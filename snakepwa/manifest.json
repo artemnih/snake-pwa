@@ -6,6 +6,7 @@
   "start_url": "/",
   "app_name": "Snake PWA",
   "short_name": "Snake PWA",
+  "orientation": "portrait",
   "icons": [
     {
       "src": "/images/icons/icon-192x192.png",

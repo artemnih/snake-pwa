@@ -1,0 +1,69 @@
+html {
+    overflow: hidden;
+}
+
+body {
+    position: relative;
+    margin: 0;
+    padding: 0;
+}
+
+.startgame {
+    z-index: 100;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    background-color: rgb(255, 127, 80);
+}
+
+.gameover {
+    z-index: 100;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    background-color: rgba(100, 100, 0, 0.4);
+}
+
+.gameover-title {
+    top: 40%;
+    color: red;
+    text-shadow: 0 0 5px black;
+    position: absolute;
+    margin: auto;
+    width: 100%;
+    text-align: center;
+    font-family: monospace;
+    font-size: 1em;
+}
+
+.title {
+    top: 40%;
+    position: absolute;
+    margin: auto;
+    width: 100%;
+    text-align: center;
+    font-family: monospace;
+    font-size: 1em;
+}
+
+.title-button {
+    top: 50%;
+    position: absolute;
+    margin: auto;
+    width: 100%;
+    text-align: center;
+    font-family: monospace;
+    font-size: 1em;
+}
+
+.title-button button {
+    font-size: 2.5em;
+    font-family: emoji;
+    padding: 0px 40px;
+    border-radius: 40px;
+    background-color: chartreuse;
+}

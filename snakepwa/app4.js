@@ -1,9 +1,35 @@
 const canvas = document.getElementById('tutorial');
+const startButton = document.getElementById('start');
+const startPanel = document.getElementById('startgame');
+const gameoverPanel = document.getElementById('gameover');
+const restartButton = document.getElementById('restart');
 const ctx = canvas.getContext('2d');
 ctx.canvas.width = window.innerWidth;
 ctx.canvas.height = window.innerHeight;
+gameoverPanel.style.display = 'none';
 
-const interval = 400; // ms // todo: add levels
+
+startButton.addEventListener('click', function (e) {
+    if (e.defaultPrevented) {
+        return;
+    }
+    startPanel.style.display = 'none';
+    gameoverPanel.style.display = 'none';
+    startGame();
+    e.preventDefault();
+}, true);
+
+restartButton.addEventListener('click', function (e) {
+    if (e.defaultPrevented) {
+        return;
+    }
+    startPanel.style.display = 'none';
+    gameoverPanel.style.display = 'none';
+    startGame();
+    e.preventDefault();
+}, true);
+
+
 const maxX = 10;
 const maxY = 10;
 const size = ctx.canvas.width / maxX;
@@ -32,22 +58,26 @@ const direction = {
     left: 'left'
 }
 
-const snake = [
+let snake = [
     { x: 6, y: 5 },
     { x: 5, y: 5 },
     { x: 4, y: 5 },
 ]
-const food = { x: 0, y: 0 };
+let food = { x: 0, y: 0 };
 
 let currentDirection = direction.right;
 let keydown = "";
-let run = true;
-
-
+let run = false;
+let interval = 500;
 
 function drawControls() {
     ctx.fillStyle = 'rgba(0, 0, 0, 1)';
     ctx.fillRect(0, gameViewHeight, gameViewWidth, 1);
+
+    ctx.fillStyle = 'rgba(255, 127, 80, 1)';
+    ctx.fillRect(0, gameViewHeight + 1, gameViewWidth, ctx.canvas.height - gameViewHeight - 1);
+
+    // rgb(255, 127, 80);
 
     ctx.fillStyle = 'rgba(100, 100, 100, 1)';
     for (const key in buttons) {
@@ -185,14 +215,31 @@ function process() {
 
     if (check()) {
         run = false;
-        alert('GAME OVER');
+        gameoverPanel.style.display = 'block';
     }
 
     if (endPiece.x === food.x && endPiece.y === food.y) {
         snake.push({ x: oldX, y: oldY });
         replaceFood();
+        interval -= 4;
     }
 }
+
+function startGame() {
+    snake = [
+        { x: 6, y: 5 },
+        { x: 5, y: 5 },
+        { x: 4, y: 5 },
+    ]
+    food = { x: 0, y: 0 };
+    currentDirection = direction.right;
+    keydown = "";
+    run = true;
+    interval = 500;
+    drawControls();
+    replaceFood();
+}
+
 
 drawControls();
 replaceFood();
